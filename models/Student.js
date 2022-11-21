@@ -15,9 +15,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER 
         },
         name: {
-            type: DataTypes.STRING
+            allowNull: false,
+            type: DataTypes.STRING,
         }, 
         NIM: {
+            allowNull: false,
             type: DataTypes.STRING
         }, 
         createdAt: {

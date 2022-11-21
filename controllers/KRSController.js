@@ -3,6 +3,11 @@ const { KRS, Student, Subject } = require('../models')
 class KRSController {
     static async addKRS(req,res,next){
         const {StudentId, SubjectId} = req.body
+        if(!StudentId || !SubjectId) {
+            return res.status(400).json({
+                error : "Missing subject or student ID parameters"
+            });
+        }
         try {
             const find = await KRS.findOne({ where: { StudentId, SubjectId } });
             if (find) {

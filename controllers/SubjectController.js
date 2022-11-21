@@ -3,6 +3,11 @@ const { Subject, KRS } = require('../models')
 class SubjectController {
     static async addSubject(req,res,next){
         const {name} = req.body
+        if(!name) {
+            return res.status(400).json({
+                error : "Missing subject name parameters"
+            });
+        }
         try {
             const find = await Subject.findOne({ where: { name } });
             if (find) {

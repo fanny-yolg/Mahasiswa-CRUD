@@ -3,6 +3,11 @@ const { Student, KRS } = require('../models')
 class StudentController {
     static async addStudent(req,res,next){
         const {name, NIM} = req.body
+        if(!name || !NIM) {
+            return res.status(400).json({
+                error : "Missing name or NIM parameters"
+            });
+        }
         try {
             const find = await Student.findOne({ where: { NIM } });
             if (find) {
@@ -33,7 +38,7 @@ class StudentController {
         }
     }
 
-    static async findById(req,res,next){
+    static async findById(req,res,next) {
         const id = req.params.id;
 
         try {
